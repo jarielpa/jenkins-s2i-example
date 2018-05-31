@@ -10,7 +10,7 @@ ENV JAVA_ALPINE_VERSION 8.151.12-r0
 ENV OC_VERSION=v3.6.0 \
     OC_TAG_SHA=c4dd4cf \
     BUILD_DEPS='tar gzip' \
-    RUN_DEPS='bash curl git ca-certificates gettext'
+    RUN_DEPS='bash curl git ca-certificates gettext procps'
 
 RUN apk --no-cache add $BUILD_DEPS $RUN_DEPS openjdk8="$JAVA_ALPINE_VERSION" && \
     curl -sLo /tmp/oc.tar.gz https://github.com/openshift/origin/releases/download/${OC_VERSION}/openshift-origin-client-tools-${OC_VERSION}-${OC_TAG_SHA}-linux-64bit.tar.gz && \
