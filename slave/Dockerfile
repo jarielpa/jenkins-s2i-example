@@ -30,6 +30,8 @@ RUN apk --no-cache add $BUILD_DEPS $RUN_DEPS openjdk8="$JAVA_ALPINE_VERSION" && 
 ENV HOME=/home/jenkins
 
 RUN mkdir -p ${HOME} \
+    && chmod -R g+w ${HOME} \
+    && chmod 664 /etc/passwd \
     && mkdir -p $HOME/.m2 \ 
     && adduser -s /bin/sh -u 1001 -G root -h ${HOME} -S -D default \
     && chown -R 1001:0 ${HOME} \
