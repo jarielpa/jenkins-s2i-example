@@ -25,7 +25,6 @@ RUN apk --no-cache add $BUILD_DEPS $RUN_DEPS openjdk8="$JAVA_ALPINE_VERSION" && 
 	&& gunzip /tmp/apache-maven.tar.gz \
 	&& tar -C /usr/local -xf /tmp/apache-maven.tar \
 	&& ln -s /usr/local/apache-maven-$MAVEN_VERSION/bin/mvn /usr/bin/mvn \
-	&& apk del curl \
 	&& rm -rf /tmp/* /var/cache/apk/*
     
 ENV HOME=/home/jenkins
