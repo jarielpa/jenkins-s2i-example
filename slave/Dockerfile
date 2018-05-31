@@ -1,6 +1,7 @@
 FROM frolvlad/alpine-glibc:latest
 
 ENV MAVEN_VERSION=3.3.9
+ENV MAVEN_HOME=/usr/local/apache-maven-3.3.9
 ENV LANG C.UTF-8
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
