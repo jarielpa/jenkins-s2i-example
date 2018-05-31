@@ -38,10 +38,9 @@ RUN mkdir -p ${HOME} \
     chmod -R g+w /var/lib/jenkins
 
 # Copy the entrypoint
-# Copy the entrypoint
 ADD contrib/bin/* /usr/local/bin/
 
 USER 1001
 
 # Run the JNLP client by default
-ENTRYPOINT ["/var/lib/jenkins/run-jnlp-client"]
+ENTRYPOINT ["/usr/local/bin/run-jnlp-client"]
