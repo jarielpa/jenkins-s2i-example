@@ -39,6 +39,7 @@ RUN mkdir -p ${HOME} \
 
 # Copy the entrypoint
 ADD contrib/bin/* /usr/local/bin/
+RUN chmod -R 755 /usr/local/bin
 
 USER 1001
 
