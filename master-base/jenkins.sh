@@ -1,6 +1,6 @@
 #! /bin/bash -e
 
-default_version=latest
+default_version=$(cat /tmp/release.version)
 JENKINS_SLAVE_IMAGE_TAG=${JENKINS_SLAVE_IMAGE_TAG:-${default_version}}
 
 source /usr/local/bin/jenkins-common.sh

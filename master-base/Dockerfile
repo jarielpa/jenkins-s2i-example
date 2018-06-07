@@ -46,6 +46,7 @@ COPY plugins.sh /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 COPY ./contrib/jenkins /usr/local/bin
 COPY config /usr/share/jenkins/ref
+ADD release.version /tmp/release.version
 
 
 RUN chmod -R 755 /usr/local/bin \
