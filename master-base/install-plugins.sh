@@ -206,6 +206,7 @@ main() {
     # Create lockfile manually before first run to make sure any explicit version set is used.
     echo "Creating initial locks..."
     for plugin in "${plugins[@]}"; do
+        echo ${plugin}
         mkdir "$(getLockFile "${plugin%%:*}")"
     done
 

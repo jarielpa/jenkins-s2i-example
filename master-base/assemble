@@ -1,0 +1,39 @@
+#!/bin/bash
+
+JENKINS_DIR=/usr/share/jenkins/ref
+JENKINS_INSTALL_DIR=$(mktemp -d --suffix=jenkins)
+
+
+shopt -s dotglob
+
+echo "---> Copying repository files to ${JENKINS_INSTALL_DIR} ..."
+cp -Rf /tmp/src/. ${JENKINS_INSTALL_DIR}
+
+# Install jenkins plugins using plugin installer if user has "plugins.txt" file
+# in repository
+if [ -f ${JENKINS_INSTALL_DIR}/plugins.txt ]; then
+  echo "---> Installing $(cat ${JENKINS_INSTALL_DIR}/plugins.txt|wc -l) Jenkins plugins using ${JENKINS_INSTALL_DIR}/plugins.txt ..."
+  /usr/local/bin/install-plugins.sh < ${JENKINS_INSTALL_DIR}/plugins.txt
+  if [[ "$?" != "0" ]]; then
+    echo "Failed to install plugins."
+    exit 1
+  fi
+  /usr/local/bin/fix-permissions ${JENKINS_DIR}/plugins
+fi
+
+if [ -d ${JENKINS_INSTALL_DIR}/plugins ]; then
+  echo "---> Installing $(ls -l ${JENKINS_INSTALL_DIR}/plugins | grep ^- | wc -l) Jenkins plugins from plugins/ directory ..."
+  cp -R ${JENKINS_INSTALL_DIR}/plugins/* ${JENKINS_DIR}/plugins/
+  /usr/local/bin/fix-permissions ${JENKINS_DIR}/plugins
+fi
+
+if [ -d ${JENKINS_INSTALL_DIR}/configuration ]; then
+  if [ -d ${JENKINS_INSTALL_DIR}/configuration/jobs ]; then
+    echo "---> Removing sample Jenkins job ..."
+    rm -rf ${JENKINS_DIR}/jobs
+  fi
+  echo "---> Installing new Jenkins configuration from ${JENKINS_INSTALL_DIR}/configuration/ to ${JENKINS_DIR}..."
+  /usr/local/bin/fix-permissions ${JENKINS_INSTALL_DIR}/configuration
+  cp -pR ${JENKINS_INSTALL_DIR}/configuration/* ${JENKINS_DIR}/
+  rm -ifr ${JENKINS_INSTALL_DIR}
+fi
