@@ -1,6 +1,6 @@
 # Jenkins S2I Example
 
-An example demonstrating Jenkins S2I features for installing plugins, configuring jobs, Jenkins, etc and using slave pods for Jenkins jobs.
+An example demonstrating custom Jenkins image with S2I features for installing plugins, configuring jobs, Jenkins, etc and using slave pods for Jenkins jobs.
 This is for OpenShift v3.6
 
 ## Installation
@@ -21,7 +21,7 @@ This is for OpenShift v3.6
 
   ```
   $ oc create -f jenkins-slave-builder-template.yaml   # For converting any S2I to Jenkins slave
-  $ oc create -f jenkins-master-s2i-template.yaml      # For creating pre-configured Jenkins master using Jenkins S2I
+
   ```
 
 5. Build Jenkins slave image.
@@ -30,8 +30,6 @@ This is for OpenShift v3.6
   $ oc new-app jenkins-slave-builder
   ```
 
-4. Create Jenkins master. You can customize the source repo and other configurations through template parameters. Note that this example doesn't define any [persistent volume](https://docs.openshift.com/enterprise/3.2/architecture/additional_concepts/storage.html). You need to define storage in order to retain Jenkins data on container restarts. 
+4. Create Jenkins master
 
-  ```
-  $ oc new-app jenkins-master-s2i
-  ```
+TODO
