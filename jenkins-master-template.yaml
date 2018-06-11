@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: jenkins-master
+objects:
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: jenkins-base
+    name: jenkins-base
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: jenkins-base:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: master-base
+      git:
+        httpProxy: ""
+        httpsProxy: ""
+        ref: master
+        uri: https://github.com/jarielpa/jenkins-s2i-example.git
+      type: Git
+    strategy:
+      dockerStrategy:
+        from:
+          kind: DockerImage
+          name: jalammas/openjdk8-alpine-oc:v3.6
+        noCache: true
+      type: Docker
+    triggers: []
+  status:
+    lastVersion: 0
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations: 
+    creationTimestamp: null
+    generation: 2
+    labels:
+      app: jenkins-base
+    name: jenkins-base
+  spec:
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: jenkins-base:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""

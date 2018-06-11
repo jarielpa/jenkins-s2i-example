@@ -12,8 +12,7 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    annotations:
-      slave-directory: /var/lib/jenkins
+    annotations: 
       slave-label: ${SLAVE_LABEL}
     labels:
       role: jenkins-slave
@@ -52,7 +51,7 @@ parameters:
   displayName: Image Name
   name: IMAGE_NAME
   required: true
-  value: rhel7/rhel
+  value: frolvlad/alpine-glibc:latest
 - description: Label for slave pods which are used by Jenkins to discover slave pods and assign jobs to them
   displayName: Jenkins Slave Label
   name: SLAVE_LABEL
