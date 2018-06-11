@@ -1,3 +1,4 @@
+
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.21">
   <actions/>
@@ -12,7 +13,7 @@
     </io.fabric8.jenkins.openshiftsync.BuildConfigProjectProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.53">
-    <script>node {
+    <script>node (&apos;maven&apos;) {
    def mvnHome
    stage(&apos;Preparation&apos;) { // for display purposes
       // Get some code from a GitHub repository
