@@ -1,6 +1,7 @@
 # Jenkins S2I Example
 
 An example demonstrating Jenkins S2I features for installing plugins, configuring jobs, Jenkins, etc and using slave pods for Jenkins jobs.
+This is for OpenShift v3.6
 
 ## Installation
 
