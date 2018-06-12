@@ -34,7 +34,7 @@ This is for OpenShift v3.6
   $ oc start-build jenkins-base
   ```
 
-5. Deploy Jenkins master (by default uses slave from public docker registery, use MAVEN_SLAVE_IMAGE and JENKINS_SLAVE_IMAGE environment variables in dc to change or update manually in Jenkins UI)
+5. Deploy Jenkins master (by default uses slave from public docker registery, use MAVEN_SLAVE_IMAGE and JENKINS_SLAVE_IMAGE_TAG environment variables in dc to change or update manually in Jenkins UI)
 
   ```	
   $ Add to Project -> Browse Catalog -> select Jenkins (Ephemeral) in your project  
