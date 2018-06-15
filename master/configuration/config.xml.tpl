@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson>
   <disabledAdministrativeMonitors/>
-  <version>2.46.3</version>
-  <numExecutors>5</numExecutors>
+  <version>2.107.3</version>
+  <numExecutors>10</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
@@ -28,10 +28,15 @@
     <enableCaptcha>false</enableCaptcha>
   </securityRealm>
   <disableRememberMe>false</disableRememberMe>
-  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
-  <jdks/>
+  <jdks>
+    <jdk>
+      <name>JDK8</name>
+      <home>/usr/lib/jvm/java-1.8-openjdk</home>
+      <properties/>
+    </jdk>
+  </jdks>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
@@ -42,13 +47,13 @@
   <views>
     <hudson.model.AllView>
       <owner class="hudson" reference="../../.."/>
-      <name>all</name>
+      <name>All</name>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties/>
     </hudson.model.AllView>
   </views>
-  <primaryView>all</primaryView>
+  <primaryView>All</primaryView>
   <slaveAgentPort>${JNLP_PORT}</slaveAgentPort>
   <label>master</label>
   <nodeProperties/>

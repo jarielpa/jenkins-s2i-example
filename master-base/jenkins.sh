@@ -45,8 +45,10 @@ function generate_administrative_monitors_config() {
 }
 
 function create_jenkins_credentials_xml() {
+  echo "Checking credentials config..."
   if [ ! -f "${image_config_dir}/credentials.xml" ]; then
     if [ -f "${image_config_dir}/credentials.xml.tpl" ]; then
+      echo "Using credentials.xml.tpl....."
       if [ ! -z "${KUBERNETES_CONFIG}" ]; then
         echo "Generating kubernetes-plugin credentials (${JENKINS_HOME}/credentials.xml.tpl) ..."
         export KUBERNETES_CREDENTIALS=$(generate_kubernetes_credentials)
@@ -59,7 +61,7 @@ function create_jenkins_credentials_xml() {
 }
 
 function create_jenkins_config_from_templates() {
-  find ${image_config_dir} -type f -name "*.tpl" -print0 | while IFS= read -r -d '' template_path; do
+  find ${image_config_dir} -type f -name "*.tpl" -print0 | sort | while IFS= read -r -d '' template_path; do
     local target_path=${template_path%.tpl}
     echo "target_path ${target_path}"
     if [[ ! -f "${target_path}" ]]; then

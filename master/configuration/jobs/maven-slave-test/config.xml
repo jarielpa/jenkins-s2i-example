@@ -18,9 +18,9 @@
       // Get some code from a GitHub repository
       git &apos;https://github.com/jglick/simple-maven-project-with-tests.git&apos;
       // Get the Maven tool.
-      // ** NOTE: This &apos;M3&apos; Maven tool must be configured
+      // ** NOTE: This &apos;MAVEN_HOME&apos; Maven tool must be configured
       // **       in the global configuration.           
-      mvnHome = tool &apos;M3&apos;
+      mvnHome = tool &apos;MAVEN_HOME&apos;
    }
    stage(&apos;Build&apos;) {
       // Run the maven build
